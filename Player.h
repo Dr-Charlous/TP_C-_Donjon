@@ -5,7 +5,7 @@
 class Player: public Character
 {
 public:
-	Player(int _lifeMax, int _life, int _force, int _exp, int _level);
+	Player(int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp, int _level);
 
 	int getExp();
 	void setExp(int exp);

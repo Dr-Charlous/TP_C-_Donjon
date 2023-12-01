@@ -1,10 +1,12 @@
 #pragma once
+#include "Weapon.h"
+#include "Armor.h"
 class Character
 {
 public:
-    Character(int _lifeMax, int _life, int _force);
+	Character(int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor);
 
-    int getLifeMax();
+	int getLifeMax();
     void setLifeMax(int lifeMax);
 
 	int getLife();
@@ -13,12 +15,18 @@ public:
 	int getForce();
 	void setForce(int force);
 
+	Weapon getWeapon();
+	void setWeapon(Weapon weapon);
+
+	Armor getArmor();
+	void setArmor(Armor armor);
+
 protected :
 	int lifeMax;
 	int life;
 	int force;
 	//var inventory;
-	//var weapon;
-	//var armor;
+	Weapon weapon;
+	Armor armor;
 };
 

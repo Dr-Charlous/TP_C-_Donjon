@@ -1,7 +1,7 @@
 #include "Player.h"
 
-Player::Player(int _lifeMax, int _life, int _force, int _exp, int _level) :
-	Character(_lifeMax, _life, _force),
+Player::Player(int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp, int _level) :
+	Character(_lifeMax, _life, _force, _weapon, _armor),
 	exp(_exp),
 	level(_level) {
 }
