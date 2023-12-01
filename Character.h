@@ -4,7 +4,10 @@
 class Character
 {
 public:
-	Character(int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor);
+	Character(std::string name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor);
+
+	std::string getName();
+	void setName(std::string _name);
 
 	int getLifeMax();
     void setLifeMax(int lifeMax);
@@ -22,6 +25,7 @@ public:
 	void setArmor(Armor armor);
 
 protected :
+	std::string name;
 	int lifeMax;
 	int life;
 	int force;

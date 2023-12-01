@@ -1,11 +1,22 @@
 #include "Character.h"
 
-Character::Character(int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor) :
+Character::Character(std::string _name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor) :
+	name(_name),
 	lifeMax(_lifeMax),
 	life(_life),
 	force(_force),
 	weapon(_weapon),
 	armor(_armor) {
+}
+
+std::string Character::getName()
+{
+	return this->name;
+}
+
+void Character::setName(std::string name)
+{
+	this->name = name;
 }
 
 int Character::getLifeMax()

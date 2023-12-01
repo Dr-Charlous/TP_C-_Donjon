@@ -2,9 +2,11 @@
 //
 
 #include <iostream>
+#include <string>
 #include "Character.h"
 #include "Player.h"
 #include "Ennemy.h"
+#include "Room.h"
 
 int main()
 {
@@ -14,11 +16,21 @@ int main()
     Armor cloth("Just cloths", 2);
     Armor steel("Steel armor", 25);
 
-    Character chara(100, 100, 25, sword, steel);
-    Player player(100, 100, 25,sword, cloth, 0, 1);
-    Ennemy ennemy(100, 100, 25, dager, cloth, 10);
+    Character chara("Character", 100, 100, 25, sword, steel);
+    Player player("Adventurer", 100, 100, 25,sword, cloth, 0, 1);
+    Ennemy ennemy("Goblin", 100, 100, 25, dager, cloth, 10);
 
-    std::cout << "Character : \n" << "- Life : " << chara.getLife() << " / " << chara.getLife() << "\n- Force : " << chara.getForce() << "\n- Equipement : \n - -Weapon : " << chara.getWeapon().getName() << "\n - -Armor : " << chara.getArmor().getName() << std::endl;
-    std::cout << "Player : \n" << "- Life : " << player.getLife() << " / " << player.getLife() << "\n- Force : " << player.getForce() << "\n- Equipement : \n - -Weapon : " << player.getWeapon().getName() << "\n - -Armor : " << player.getArmor().getName() << "\n- Lvl : " << player.getLevel() << " / Exp : " << player.getExp() << std::endl;
-    std::cout << "Ennemy : \n" << "- Life : " << ennemy.getLife() << " / " << ennemy.getLife() << "\n- Force : " << ennemy.getForce() << "\n- Equipement : \n - -Weapon : " << ennemy.getWeapon().getName() << "\n - -Armor : " << ennemy.getArmor().getName() << "\n- Exp : " << ennemy.getExp() << std::endl;
+    std::cout << chara.getName() << " : \n" << "- Life : " << chara.getLife() << " / " << chara.getLife() << "\n- Force : " << chara.getForce() << "\n- Equipement : \n - -Weapon : " << chara.getWeapon().getName() << "\n - -Armor : " << chara.getArmor().getName() << std::endl;
+    std::cout << player.getName() << " : \n" << "- Life : " << player.getLife() << " / " << player.getLife() << "\n- Force : " << player.getForce() << "\n- Equipement : \n - -Weapon : " << player.getWeapon().getName() << "\n - -Armor : " << player.getArmor().getName() << "\n- Lvl : " << player.getLevel() << " / Exp : " << player.getExp() << std::endl;
+    std::cout << ennemy.getName() << " : \n" << "- Life : " << ennemy.getLife() << " / " << ennemy.getLife() << "\n- Force : " << ennemy.getForce() << "\n- Equipement : \n - -Weapon : " << ennemy.getWeapon().getName() << "\n - -Armor : " << ennemy.getArmor().getName() << "\n- Exp : " << ennemy.getExp() << std::endl;
+
+    std::vector<Ennemy> ennemiesRoomstart;
+    ennemiesRoomstart.push_back(ennemy);
+    ennemiesRoomstart.push_back(ennemy);
+
+    Room startingRoom(0, 0, ennemiesRoomstart, false, false);
+
+    std::cout << "\n" << std::endl;
+
+    startingRoom.PrintRoom();
 }

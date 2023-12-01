@@ -1,7 +1,7 @@
 #include "Player.h"
 
-Player::Player(int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp, int _level) :
-	Character(_lifeMax, _life, _force, _weapon, _armor),
+Player::Player(std::string _name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp, int _level) :
+	Character(_name, _lifeMax, _life, _force, _weapon, _armor),
 	exp(_exp),
 	level(_level) {
 }
@@ -25,4 +25,12 @@ int Player::getLevel()
 void Player::setLevel(int level)
 {
 	this->level = level;
+}
+
+void Player::LevelUp(int *exp, int *level)
+{
+	if (*exp >= *level * 100) {
+		*exp -= *level * 100;
+		*level += 1;
+	}
 }

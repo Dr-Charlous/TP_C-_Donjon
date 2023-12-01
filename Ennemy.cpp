@@ -1,7 +1,7 @@
 #include "Ennemy.h"
 
-Ennemy::Ennemy(int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp) :
-	Character(_lifeMax, _life, _force, _weapon, _armor),
+Ennemy::Ennemy(std::string _name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp) :
+	Character(_name, _lifeMax, _life, _force, _weapon, _armor),
 	exp(_exp) {
 }
 
