@@ -1,9 +1,11 @@
 #include "Room.h"
 #include <iostream>
 
-Room::Room(int _posX, int _posY, std::vector<Ennemy> _ennemies, bool _isThereABed, bool _isThereAnExit) :
+
+Room::Room(int _posX, int _posY, std::vector<Potion> _potion, std::vector<Ennemy> _ennemies, bool _isThereABed, bool _isThereAnExit) :
 	posX(_posX),
 	posY(_posY),
+	objects(_potion),
 	ennemies(_ennemies),
 	isThereABed(_isThereABed),
 	isThereAnExit(_isThereAnExit)
@@ -28,6 +30,16 @@ int Room::getPosY()
 void Room::setPosY(int posY)
 {
 	this->posY = posY;
+}
+
+std::vector<Potion> Room::getPotion()
+{
+	return this->objects;
+}
+
+void Room::setPotion(std::vector<Potion> potions)
+{
+	this-> objects = potions;
 }
 
 std::vector<Ennemy> Room::getEnnemies()

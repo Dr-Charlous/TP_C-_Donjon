@@ -24,11 +24,15 @@ int main()
     std::cout << player.getName() << " : \n" << "- Life : " << player.getLife() << " / " << player.getLife() << "\n- Force : " << player.getForce() << "\n- Equipement : \n - -Weapon : " << player.getWeapon().getName() << "\n - -Armor : " << player.getArmor().getName() << "\n- Lvl : " << player.getLevel() << " / Exp : " << player.getExp() << std::endl;
     std::cout << ennemy.getName() << " : \n" << "- Life : " << ennemy.getLife() << " / " << ennemy.getLife() << "\n- Force : " << ennemy.getForce() << "\n- Equipement : \n - -Weapon : " << ennemy.getWeapon().getName() << "\n - -Armor : " << ennemy.getArmor().getName() << "\n- Exp : " << ennemy.getExp() << std::endl;
 
+    std::vector<Potion> potionRoomstart;
+    ennemiesRoomstart.push_back(ennemy);
+    ennemiesRoomstart.push_back(ennemy);
+
     std::vector<Ennemy> ennemiesRoomstart;
     ennemiesRoomstart.push_back(ennemy);
     ennemiesRoomstart.push_back(ennemy);
 
-    Room startingRoom(0, 0, ennemiesRoomstart, false, false);
+    Room startingRoom(0, 0, potions, ennemiesRoomstart, false, false);
 
     std::cout << "\n" << std::endl;
 
