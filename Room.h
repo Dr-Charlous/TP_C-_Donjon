@@ -7,13 +7,7 @@
 class Room
 {
 public:
-	Room(int posX, int posY, std::vector<Potion> potion, std::vector<Ennemy> ennemies, bool isThereABed, bool isThereAnExit);
-
-	int getPosX();
-	void setPosX(int posX);
-
-	int getPosY();
-	void setPosY(int posY);
+	Room(std::vector<Potion> potion, std::vector<Ennemy> ennemies, bool isThereABed, bool isThereAnExit);
 
 	std::vector<Potion> getPotion();
 	void setPotion(std::vector<Potion>);
@@ -31,9 +25,7 @@ public:
 
 
 protected:
-	int posX;
-	int posY;
-	std::vector<Potion> objects;
+	std::vector<Potion> potions;
 	//std::vector<> hideObjects;
 	std::vector<Ennemy> ennemies;
 	bool isThereABed;

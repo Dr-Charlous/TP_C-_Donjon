@@ -4,7 +4,7 @@
 class Potion
 {
 public:
-	Potion(std::string name, int heal, int life, int force);
+	Potion(std::string name, int heal, int life, int force, bool used);
 
 	std::string getName();
 	void setName(std::string name);
@@ -18,6 +18,9 @@ public:
 	int getForce();
 	void setForce(int force);
 
+	bool getUsed();
+	void setUsed(bool used);
+
 	void giveHeal(Player *player);
 	void giveLife(Player *player);
 	void giveForce(Player *player);
@@ -27,5 +30,6 @@ protected:
 	int heal;
 	int life;
 	int force;
+	bool used;
 };
 

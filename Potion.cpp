@@ -1,10 +1,12 @@
 #include "Potion.h"
 
-Potion::Potion(std::string _name, int _heal, int _life, int _force) :
+Potion::Potion(std::string _name, int _heal, int _life, int _force, bool _used) :
 	name(_name),
 	heal(_heal),
 	life(_life),
-	force(_force) {
+	force(_force),
+	used(_used) 
+{
 }
 
 std::string Potion::getName()
@@ -45,6 +47,16 @@ int Potion::getForce()
 void Potion::setForce(int force)
 {
 	this->force = force;
+}
+
+bool Potion::getUsed()
+{
+	return this->used;
+}
+
+void Potion::setUsed(bool used)
+{
+	this->used = used;
 }
 
 void Potion::giveLife(Player* player)

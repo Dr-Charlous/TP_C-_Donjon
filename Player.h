@@ -14,6 +14,7 @@ public:
 	void setLevel(int level);
 
 	void LevelUp(int *exp,int *level);
+	void Sleep(int sleepingHeal);
 
 protected:
 	int exp;

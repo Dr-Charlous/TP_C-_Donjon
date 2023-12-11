@@ -27,6 +27,15 @@ void Player::setLevel(int level)
 	this->level = level;
 }
 
+void Player::Sleep(int sleepingHeal)
+{
+	this->life += sleepingHeal;
+	if (this->life >= this->lifeMax) 
+	{
+		this->life = this->lifeMax;
+	}
+}
+
 void Player::LevelUp(int *exp, int *level)
 {
 	if (*exp >= *level * 100) {

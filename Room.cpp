@@ -2,44 +2,22 @@
 #include <iostream>
 
 
-Room::Room(int _posX, int _posY, std::vector<Potion> _potion, std::vector<Ennemy> _ennemies, bool _isThereABed, bool _isThereAnExit) :
-	posX(_posX),
-	posY(_posY),
-	objects(_potion),
+Room::Room(std::vector<Potion> _potion, std::vector<Ennemy> _ennemies, bool _isThereABed, bool _isThereAnExit) :
+	potions(_potion),
 	ennemies(_ennemies),
 	isThereABed(_isThereABed),
 	isThereAnExit(_isThereAnExit)
 {
 }
 
-int Room::getPosX()
-{
-	return this->posX;
-}
-
-void Room::setPosX(int posX)
-{
-	this->posX = posX;
-}
-
-int Room::getPosY()
-{
-	return this->posY;
-}
-
-void Room::setPosY(int posY)
-{
-	this->posY = posY;
-}
-
 std::vector<Potion> Room::getPotion()
 {
-	return this->objects;
+	return this->potions;
 }
 
 void Room::setPotion(std::vector<Potion> potions)
 {
-	this-> objects = potions;
+	this->potions = potions;
 }
 
 std::vector<Ennemy> Room::getEnnemies()
@@ -74,9 +52,15 @@ void Room::setExit(bool isThereAnExit)
 
 void Room::PrintRoom()
 {
+	for (size_t i = 0; i < potions.size(); i++)
+	{
+		std::cout << "\n   Objects : " << potions[i].getName() << std::endl;
+	}
 	for (size_t i = 0; i < ennemies.size(); i++)
 	{
-		std::cout << "Pos x :" << posX << " Pos y :" << posY << "\n   Ennemy : " << ennemies[i].getName() << "\n     Bed : " << isThereABed << " Exit : " << isThereAnExit << std::endl;
+		std::cout << "\n   Ennemy : " << ennemies[i].getName() << std::endl;
 	}
+
+	std::cout << "\n   Bed : " << isThereABed << " Exit : " << isThereAnExit << std::endl;
 }
 
