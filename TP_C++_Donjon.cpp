@@ -77,21 +77,30 @@ void Choice(Donjon donjon, Player player)
 		//Observe
 		//Objets cachés ?
 	}
-	else if (choice == 2) {
+	else if (choice >= 2 && choice <= 5) {
 		//Change Room
-		//Si 0 ennemies peut changer
+		bool isAnyOneAlive = false;
+		for (size_t i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
+		{
+			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].getLife() > 0) 
+			{
+				isAnyOneAlive = true;
+			}
+		}
+
+		// peut changer room
 	}
-	else if (choice == 3) {
+	else if (choice == 6) {
 		//Attack
 		//Si ennemies, attack un random
 	}
-	else if (choice == 4) {
+	else if (choice == 7) {
 		//Pick up
 		if (donjon.getRooms()[donjon.getActualPosition()].getPotion().size() != 0)
 		{
 			for (size_t i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getPotion().size(); i++)
 			{
-				if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getUsed() == false) 
+				if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getUsed() == false)
 				{
 					if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getForce() > 0) donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveForce(&player);
 					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getLife() > 0) donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveLife(&player);
@@ -103,24 +112,24 @@ void Choice(Donjon donjon, Player player)
 			}
 		}
 	}
-	else if (choice == 5) {
+	else if (choice == 8) {
 		//Sleep
 		bool isEnnemiesAnymore = false;
 
 		for (size_t i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
 		{
-			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].getLife() > 0) 
+			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].getLife() > 0)
 			{
 				isEnnemiesAnymore = true;
 			}
 		}
 
-		if (donjon.getRooms()[donjon.getActualPosition()].getBed() == true && isEnnemiesAnymore == false) 
+		if (donjon.getRooms()[donjon.getActualPosition()].getBed() == true && isEnnemiesAnymore == false)
 		{
 			player.Sleep((int)(player.getLifeMax() / 3));
 		}
 	}
-	else if (choice == 6) {
+	else if (choice == 9) {
 		//Use
 		//Les potions de soin qui sont dans pickup pour le moment, utiliser les objets dans "l'inventaire"
 	}
