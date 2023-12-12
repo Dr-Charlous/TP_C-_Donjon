@@ -10,6 +10,10 @@ public:
 	int getExp();
 	void setExp(int exp);
 
+	void attack(Player& target);
+	void recieveDamage(int damage);
+	bool isAlive();
+
 protected:
 	int exp;
 };

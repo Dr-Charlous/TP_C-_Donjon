@@ -9,6 +9,7 @@
 #include "Ennemy.h"
 #include "Room.h"
 #include "Donjon.h"
+#include "Battle.h"
 
 void Initialize()
 {
@@ -21,7 +22,7 @@ void Initialize()
 	Armor steel("Steel armor", 25);
 
 	//Potions
-	Potion potion("Heal potion", 10, 0, 0);
+	Potion potion("Heal potion", 10, 0, 0, false);
 
 	//Characters
 	Character chara("Character", 100, 100, 25, sword, steel);
@@ -39,7 +40,7 @@ void Initialize()
 	ennemiesRoomstart.push_back(ennemy);
 
 	//Room
-	Room startingRoom(0, 0, potionRoomstart, ennemiesRoomstart, false, false);
+	Room startingRoom(potionRoomstart, ennemiesRoomstart, false, false);
 
 	//Rooms in donjon
 	std::vector<Room> roomsAdventure;
@@ -51,6 +52,7 @@ void Initialize()
 	Donjon donjonAdventure(roomsAdventure, 1, 3);
 
 	//Display(chara, player, ennemy, donjonAdventure);
+	Choice(donjonAdventure, player);
 }
 
 void Display(Character chara, Player player, Ennemy ennemy, Donjon donjonAdventure)
@@ -70,6 +72,8 @@ void Display(Character chara, Player player, Ennemy ennemy, Donjon donjonAdventu
 
 void Choice(Donjon donjon, Player player)
 {
+	std::cout << "1 : Observe \n" << "2-5 : Change Room \n" << "6 : Attack \n" << "7 : Pick up \n" << "8 : Sleep \n" << "9 : Use \n" << std::endl;
+
 	int choice = 0;
 	std::cin >> choice;
 
@@ -87,12 +91,24 @@ void Choice(Donjon donjon, Player player)
 				isAnyOneAlive = true;
 			}
 		}
-
 		// peut changer room
 	}
 	else if (choice == 6) {
 		//Attack
 		//Si ennemies, attack un random
+		int isAnyOneAlive = -1;
+		for (size_t i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
+		{
+			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].isAlive())
+			{
+				isAnyOneAlive = i;
+			}
+		}
+
+		if (isAnyOneAlive != -1) {
+			Battle battle(player, donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[isAnyOneAlive]);
+			battle.fight();
+		}
 	}
 	else if (choice == 7) {
 		//Pick up
@@ -103,8 +119,8 @@ void Choice(Donjon donjon, Player player)
 				if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getUsed() == false)
 				{
 					if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getForce() > 0) donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveForce(&player);
-					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getLife() > 0) donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveLife(&player);
-					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getHeal() > 0) donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveHeal(&player);
+					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getLife() > 0)  donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveLife(&player);
+					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getHeal() > 0) player.addPotionHeal(donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]);
 
 					donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].setUsed(true);
 					break;
@@ -131,12 +147,24 @@ void Choice(Donjon donjon, Player player)
 	}
 	else if (choice == 9) {
 		//Use
-		//Les potions de soin qui sont dans pickup pour le moment, utiliser les objets dans "l'inventaire"
+		//utiliser les objets dans "l'inventaire"
+		if (player.getPotionHeal().size() > 0)
+		{
+			int usable = -1;
+			for (int i = 0; i < player.getPotionHeal().size(); i++)
+			{
+				if (!player.getPotionHeal()[i].getUsed())
+				{
+					usable = i;
+				}
+			}
+
+			player.getPotionHeal()[usable].giveHeal(&player);
+		}
 	}
 }
 
 int main()
 {
-	//Initialize();
-	Choice();
+	Initialize();
 }

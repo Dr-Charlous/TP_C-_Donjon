@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Character.h"
+#include <vector>
+#include "Ennemy.h"
+#include "Potion.h"
 
 class Player: public Character
 {
@@ -16,8 +19,17 @@ public:
 	void LevelUp(int *exp,int *level);
 	void Sleep(int sleepingHeal);
 
+	std::vector<Potion> getPotionHeal();
+	void setPotionHeal(std::vector<Potion> potionInHand);
+	void addPotionHeal(Potion potionInHand);
+
+	void attack(Ennemy& target);
+	void recieveDamage(int damage);
+	bool isAlive();
+
 protected:
 	int exp;
 	int level;
+	std::vector<Potion> potionInHand;
 };
 

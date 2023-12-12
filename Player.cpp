@@ -1,4 +1,7 @@
 #include "Player.h"
+#include "Ennemy.h"
+#include <vector>
+#include "Potion.h"
 
 Player::Player(std::string _name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp, int _level) :
 	Character(_name, _lifeMax, _life, _force, _weapon, _armor),
@@ -34,6 +37,38 @@ void Player::Sleep(int sleepingHeal)
 	{
 		this->life = this->lifeMax;
 	}
+}
+
+std::vector<Potion> Player::getPotionHeal()
+{
+	return this->potionInHand;
+}
+
+void Player::setPotionHeal(std::vector<Potion> potionInHand)
+{
+	this->potionInHand = potionInHand;
+}
+
+void Player::addPotionHeal(Potion potionInHand)
+{
+	this->potionInHand.push_back(potionInHand);
+}
+
+void Player::attack(Ennemy& target)
+{
+	target.recieveDamage(this->force + this->getWeapon().getDamage());
+}
+
+void Player::recieveDamage(int damage)
+{
+	int actualDamage = (damage - armor.getDefence())* ((rand() % 10) + 1);
+	if (actualDamage < 0) actualDamage = 0;
+	life -= actualDamage;
+}
+
+bool Player::isAlive()
+{
+	return life > 0;
 }
 
 void Player::LevelUp(int *exp, int *level)
