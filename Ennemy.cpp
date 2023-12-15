@@ -1,5 +1,6 @@
 #include "Ennemy.h"
 #include "Player.h"
+#include <ctime>
 
 Ennemy::Ennemy(std::string _name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp) :
 	Character(_name, _lifeMax, _life, _force, _weapon, _armor),
@@ -23,7 +24,8 @@ void Ennemy::attack(Player& target)
 
 void Ennemy::recieveDamage(int damage)
 {
-	int actualDamage = (damage - armor.getDefence()) * ((rand() % 10) + 1);
+	std::srand(std::time(nullptr));
+	int actualDamage = (damage - armor.getDefence()) + (damage - armor.getDefence() / 100 * (rand() % 10) + 1);
 	if (actualDamage < 0) actualDamage = 0;
 	life -= actualDamage;
 }

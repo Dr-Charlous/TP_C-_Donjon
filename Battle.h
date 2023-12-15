@@ -12,7 +12,8 @@ public :
 	Ennemy* getEnnemy();
 	void setEnnemy(Ennemy* ennemy);
 
-	void fight();
+	bool fight(Player& player, Ennemy& ennemy);
+	bool ennemyAttack(Player& player, Ennemy& ennemy);
 protected :
 	Player* player;
 	Ennemy* ennemy;
