@@ -52,7 +52,7 @@ void Initialize()
 	Donjon donjonAdventure(roomsAdventure, 1, 3);
 
 	//Display(chara, player, ennemy, donjonAdventure);
-	Choice(donjonAdventure, player);
+	//Choice(donjonAdventure, player);
 }
 
 void Display(Character chara, Player player, Ennemy ennemy, Donjon donjonAdventure)
@@ -84,7 +84,7 @@ void Choice(Donjon donjon, Player player)
 	else if (choice >= 2 && choice <= 5) {
 		//Change Room
 		bool isAnyOneAlive = false;
-		for (size_t i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
+		for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
 		{
 			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].getLife() > 0) 
 			{
@@ -97,7 +97,7 @@ void Choice(Donjon donjon, Player player)
 		//Attack
 		//Si ennemies, attack un random
 		int isAnyOneAlive = -1;
-		for (size_t i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
+		for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
 		{
 			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].isAlive())
 			{
@@ -114,7 +114,7 @@ void Choice(Donjon donjon, Player player)
 		//Pick up
 		if (donjon.getRooms()[donjon.getActualPosition()].getPotion().size() != 0)
 		{
-			for (size_t i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getPotion().size(); i++)
+			for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getPotion().size(); i++)
 			{
 				if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getUsed() == false)
 				{
@@ -132,7 +132,7 @@ void Choice(Donjon donjon, Player player)
 		//Sleep
 		bool isEnnemiesAnymore = false;
 
-		for (size_t i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
+		for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
 		{
 			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].getLife() > 0)
 			{

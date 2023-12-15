@@ -5,6 +5,10 @@
 #include "Ennemy.h"
 #include "Potion.h"
 
+class Player;
+class Ennemy;
+class Potion;
+
 class Player: public Character
 {
 public:
