@@ -27,7 +27,7 @@ public:
 	void setPotionHeal(std::vector<Potion> potionInHand);
 	void addPotionHeal(Potion potionInHand);
 
-	void attack(Ennemy& target);
+	void attack(Ennemy* target);
 	void recieveDamage(int damage);
 	bool isAlive();
 

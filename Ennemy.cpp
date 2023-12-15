@@ -17,9 +17,9 @@ void Ennemy::setExp(int exp)
 	this->exp = exp;
 }
 
-void Ennemy::attack(Player& target)
+void Ennemy::attack(Player* target)
 {
-	target.recieveDamage(this->force + this->getWeapon().getDamage());
+	target->recieveDamage(this->force + this->getWeapon().getDamage());
 }
 
 void Ennemy::recieveDamage(int damage)

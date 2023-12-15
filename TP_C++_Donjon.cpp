@@ -12,12 +12,21 @@
 #include "Donjon.h"
 #include "Battle.h"
 
-void Choice(Donjon donjon, Player player, bool battle)
+void Choice(Donjon donjon, Player* player, bool battle)
 {
 	if (battle == false)
 	{
+		int isAnyOneAlive = 0;
+		for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
+		{
+			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i]->getLife() > 0)
+			{
+				isAnyOneAlive++;
+			}
+		}
+
 		std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
-		std::cout << "Room : " << donjon.getActualPosition() << "\nBed : " << donjon.getRooms()[donjon.getActualPosition()].getBed() << " / End : " << donjon.getRooms()[donjon.getActualPosition()].getExit() << "\nPotions : " << donjon.getRooms()[donjon.getActualPosition()].getPotion().size() << " / Ennemies : " << donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size() << std::endl;
+		std::cout << "Room : " << donjon.getActualPosition() << "\nBed : " << donjon.getRooms()[donjon.getActualPosition()].getBed() << " / End : " << donjon.getRooms()[donjon.getActualPosition()].getExit() << "\nPotions : " << donjon.getRooms()[donjon.getActualPosition()].getPotion().size() << " / Ennemies : " << isAnyOneAlive << std::endl;
 		std::cout << "\n1 : Observe \n" << "2-5 : Change Room \n" << "6 : Attack \n" << "7 : Pick up \n" << "8 : Sleep \n" << "9 : Use \n" << std::endl;
 	}
 	else
@@ -41,7 +50,7 @@ void Choice(Donjon donjon, Player player, bool battle)
 			bool isAnyOneAlive = false;
 			for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
 			{
-				if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].getLife() > 0)
+				if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i]->getLife() > 0)
 				{
 					isAnyOneAlive = true;
 				}
@@ -74,7 +83,7 @@ void Choice(Donjon donjon, Player player, bool battle)
 		int isAnyOneAlive = -1;
 		for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
 		{
-			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].isAlive())
+			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i]->isAlive())
 			{
 				isAnyOneAlive = i;
 			}
@@ -84,6 +93,7 @@ void Choice(Donjon donjon, Player player, bool battle)
 			Battle battle(player, donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[isAnyOneAlive]);
 			std::cout << "Fight !!!" << std::endl;
 			bool battleFinished = battle.fight(player, donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[isAnyOneAlive]);
+
 			Choice(donjon, player, battleFinished);
 		}
 		else
@@ -99,9 +109,9 @@ void Choice(Donjon donjon, Player player, bool battle)
 			{
 				if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getUsed() == false)
 				{
-					if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getForce() > 0) donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveForce(&player);
-					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getLife() > 0)  donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveLife(&player);
-					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getHeal() > 0) player.addPotionHeal(donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]);
+					if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getForce() > 0) donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveForce(player);
+					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getLife() > 0)  donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].giveLife(player);
+					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getHeal() > 0) player->addPotionHeal(donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]);
 
 					donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].setUsed(true);
 					std::cout << "You get a " << donjon.getRooms()[donjon.getActualPosition()].getPotion()[i].getName() << std::endl;
@@ -118,7 +128,7 @@ void Choice(Donjon donjon, Player player, bool battle)
 
 		for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
 		{
-			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].getLife() > 0)
+			if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i]->getLife() > 0)
 			{
 				isEnnemiesAnymore = true;
 				std::cout << "There is still ennemies !" << std::endl;
@@ -128,18 +138,18 @@ void Choice(Donjon donjon, Player player, bool battle)
 		if (donjon.getRooms()[donjon.getActualPosition()].getBed() == true && isEnnemiesAnymore == false)
 		{
 			std::cout << "Z Z Z" << std::endl;
-			player.Sleep((int)(player.getLifeMax() / 3));
+			player->Sleep((int)(player->getLifeMax() / 3));
 		}
 	}
 	else if (choice == 9) {
 		//Use
 		//utiliser les objets dans "l'inventaire"
-		if (player.getPotionHeal().size() > 0)
+		if (player->getPotionHeal().size() > 0)
 		{
 			int usable = -1;
-			for (int i = 0; i < player.getPotionHeal().size(); i++)
+			for (int i = 0; i < player->getPotionHeal().size(); i++)
 			{
-				if (!player.getPotionHeal()[i].getUsed())
+				if (!player->getPotionHeal()[i].getUsed())
 				{
 					usable = i;
 				}
@@ -147,8 +157,8 @@ void Choice(Donjon donjon, Player player, bool battle)
 
 			if (usable != -1)
 			{
-				std::cout << "Gloogloo... you use a " << player.getPotionHeal()[usable].getName() << std::endl;
-				player.getPotionHeal()[usable].giveHeal(&player);
+				std::cout << "Gloogloo... you use a " << player->getPotionHeal()[usable].getName() << std::endl;
+				player->getPotionHeal()[usable].giveHeal(player);
 			}
 			else
 			{
@@ -160,14 +170,15 @@ void Choice(Donjon donjon, Player player, bool battle)
 		}
 	}
 
-	if (player.isAlive()) {
+	if (player->isAlive()) {
 		if (choice != 6 && battle) {
 			int isAnyOneAlive = -1;
 			for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
 			{
-				if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i].isAlive())
+				if (donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[i]->isAlive())
 				{
 					isAnyOneAlive = i;
+					break;
 				}
 			}
 
@@ -201,8 +212,9 @@ void Initialize()
 	Potion potion("Heal potion", 10, 0, 0, false);
 
 	//Characters
-	Player player("Adventurer", 100, 100, 25, sword, steel, 0, 1);
-	Ennemy ennemy("Goblin", 100, 100, 25, dager, cloth, 10);
+	Player player("Adventurer", 10000, 10000, 25, sword, steel, 0, 1);
+	Ennemy ennemy1("Goblin", 100, 100, 25, dager, cloth, 10);
+	Ennemy ennemy2("Goblin", 100, 100, 25, dager, cloth, 10);
 
 	//Potions in room
 	std::vector<Potion> potionRoomstart;
@@ -210,9 +222,9 @@ void Initialize()
 	potionRoomstart.push_back(potion);
 
 	//Ennemies in room
-	std::vector<Ennemy> ennemiesRoomstart;
-	ennemiesRoomstart.push_back(ennemy);
-	ennemiesRoomstart.push_back(ennemy);
+	std::vector<Ennemy*> ennemiesRoomstart;
+	ennemiesRoomstart.push_back(&ennemy1);
+	ennemiesRoomstart.push_back(&ennemy2);
 
 	//Room
 	Room startingRoom(potionRoomstart, ennemiesRoomstart, false, false);
@@ -228,7 +240,7 @@ void Initialize()
 
 
 	//Display(chara, player, ennemy, donjonAdventure);
-	Choice(donjonAdventure, player, false);
+	Choice(donjonAdventure, &player, false);
 }
 
 int main()

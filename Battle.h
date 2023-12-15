@@ -4,7 +4,7 @@
 class Battle
 {
 public :
-	Battle(Player player, Ennemy ennemy);
+	Battle(Player* player, Ennemy* ennemy);
 
 	Player* getPlayer();
 	void setPlayer(Player* player);
@@ -12,8 +12,8 @@ public :
 	Ennemy* getEnnemy();
 	void setEnnemy(Ennemy* ennemy);
 
-	bool fight(Player& player, Ennemy& ennemy);
-	bool ennemyAttack(Player& player, Ennemy& ennemy);
+	bool fight(Player* player, Ennemy* ennemy);
+	bool ennemyAttack(Player* player, Ennemy* ennemy);
 protected :
 	Player* player;
 	Ennemy* ennemy;

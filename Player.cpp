@@ -55,9 +55,9 @@ void Player::addPotionHeal(Potion potionInHand)
 	this->potionInHand.push_back(potionInHand);
 }
 
-void Player::attack(Ennemy& target)
+void Player::attack(Ennemy* target)
 {
-	target.recieveDamage(this->force + this->getWeapon().getDamage());
+	target->recieveDamage(this->force + this->getWeapon().getDamage());
 }
 
 void Player::recieveDamage(int damage)

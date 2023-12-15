@@ -1,3 +1,3 @@
 ﻿  TP_C++_Donjon.cpp
-C:\Users\charles.piercourt\Documents\TP_C-_Donjon\TP_C++_Donjon.cpp(56,24): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\charles.piercourt\Documents\TP_C-_Donjon\TP_C++_Donjon.cpp(65,24): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   TP_C++_Donjon.vcxproj -> C:\Users\charles.piercourt\Documents\TP_C-_Donjon\x64\Debug\TP_C++_Donjon.exe
