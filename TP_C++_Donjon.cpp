@@ -94,6 +94,12 @@ void Choice(Donjon donjon, Player* player, bool battle)
 			std::cout << "Fight !!!" << std::endl;
 			bool battleFinished = battle.fight(player, donjon.getRooms()[donjon.getActualPosition()].getEnnemies()[isAnyOneAlive]);
 
+			std::vector<Ennemy*> ennemies = donjon.getRooms()[donjon.getActualPosition()].getEnnemies();
+
+			if (!ennemies[isAnyOneAlive]->isAlive()) {
+				ennemies.erase(ennemies.begin() + isAnyOneAlive);
+			}
+
 			Choice(donjon, player, battleFinished);
 		}
 		else
