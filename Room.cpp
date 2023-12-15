@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-Room::Room(std::vector<Potion> _potion, std::vector<Ennemy*> _ennemies, bool _isThereABed, bool _isThereAnExit) :
+Room::Room(std::vector<Potion*> _potion, std::vector<Ennemy*> _ennemies, bool _isThereABed, bool _isThereAnExit) :
 	potions(_potion),
 	ennemies(_ennemies),
 	isThereABed(_isThereABed),
@@ -10,12 +10,12 @@ Room::Room(std::vector<Potion> _potion, std::vector<Ennemy*> _ennemies, bool _is
 {
 }
 
-std::vector<Potion> Room::getPotion()
+std::vector<Potion*> Room::getPotion()
 {
 	return this->potions;
 }
 
-void Room::setPotion(std::vector<Potion> potions)
+void Room::setPotion(std::vector<Potion*> potions)
 {
 	this->potions = potions;
 }
@@ -54,7 +54,7 @@ void Room::PrintRoom()
 {
 	for (int i = 0; i < potions.size(); i++)
 	{
-		std::cout << "\n   Objects : " << potions[i].getName() << std::endl;
+		std::cout << "\n   Objects : " << potions[i]->getName() << std::endl;
 	}
 	for (int i = 0; i < ennemies.size(); i++)
 	{

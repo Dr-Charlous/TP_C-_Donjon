@@ -1,12 +1,12 @@
 #include "Character.h"
 
-Character::Character(std::string _name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor) :
+Character::Character(std::string _name, int _lifeMax, int _life, int _force) :
 	name(_name),
 	lifeMax(_lifeMax),
 	life(_life),
 	force(_force),
-	weapon(_weapon),
-	armor(_armor) {
+	weapon(Weapon("Hands", 0)),
+	armor(Armor("Naked", 0)) {
 }
 
 std::string Character::getName()

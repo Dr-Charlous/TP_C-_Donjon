@@ -7,7 +7,7 @@ class Player;
 class Potion
 {
 public:
-	Potion(std::string name, int heal, int life, int force, bool used);
+	Potion(std::string name, int heal, int life, int force);
 
 	std::string getName();
 	void setName(std::string name);

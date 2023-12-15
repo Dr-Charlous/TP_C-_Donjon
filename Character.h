@@ -4,7 +4,7 @@
 class Character
 {
 public:
-	Character(std::string name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor);
+	Character(std::string name, int _lifeMax, int _life, int _force);
 
 	std::string getName();
 	void setName(std::string _name);
@@ -33,4 +33,3 @@ protected :
 	Weapon weapon;
 	Armor armor;
 };
-

@@ -4,8 +4,8 @@
 #include "Potion.h"
 #include <ctime>
 
-Player::Player(std::string _name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp, int _level) :
-	Character(_name, _lifeMax, _life, _force, _weapon, _armor),
+Player::Player(std::string _name, int _lifeMax, int _life, int _force,  int _exp, int _level) :
+	Character(_name, _lifeMax, _life, _force),
 	exp(_exp),
 	level(_level) {
 }
@@ -40,17 +40,17 @@ void Player::Sleep(int sleepingHeal)
 	}
 }
 
-std::vector<Potion> Player::getPotionHeal()
+std::vector<Potion*> Player::getPotionHeal()
 {
 	return this->potionInHand;
 }
 
-void Player::setPotionHeal(std::vector<Potion> potionInHand)
+void Player::setPotionHeal(std::vector<Potion*> potionInHand)
 {
 	this->potionInHand = potionInHand;
 }
 
-void Player::addPotionHeal(Potion potionInHand)
+void Player::addPotionHeal(Potion* potionInHand)
 {
 	this->potionInHand.push_back(potionInHand);
 }

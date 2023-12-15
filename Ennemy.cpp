@@ -2,8 +2,8 @@
 #include "Player.h"
 #include <ctime>
 
-Ennemy::Ennemy(std::string _name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp) :
-	Character(_name, _lifeMax, _life, _force, _weapon, _armor),
+Ennemy::Ennemy(std::string _name, int _lifeMax, int _life, int _force, int _exp) :
+	Character(_name, _lifeMax, _life, _force),
 	exp(_exp) {
 }
 

@@ -1,11 +1,11 @@
 #include "Potion.h"
 
-Potion::Potion(std::string _name, int _heal, int _life, int _force, bool _used) :
+Potion::Potion(std::string _name, int _heal, int _life, int _force) :
 	name(_name),
 	heal(_heal),
 	life(_life),
 	force(_force),
-	used(_used) 
+	used(false)
 {
 }
 

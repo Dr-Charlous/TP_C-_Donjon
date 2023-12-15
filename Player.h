@@ -12,7 +12,7 @@ class Potion;
 class Player: public Character
 {
 public:
-	Player(std::string _name, int _lifeMax, int _life, int _force, Weapon _weapon, Armor _armor, int _exp, int _level);
+	Player(std::string _name, int _lifeMax, int _life, int _force, int _exp, int _level);
 
 	int getExp();
 	void setExp(int exp);
@@ -23,9 +23,9 @@ public:
 	void LevelUp(int *exp,int *level);
 	void Sleep(int sleepingHeal);
 
-	std::vector<Potion> getPotionHeal();
-	void setPotionHeal(std::vector<Potion> potionInHand);
-	void addPotionHeal(Potion potionInHand);
+	std::vector<Potion*> getPotionHeal();
+	void setPotionHeal(std::vector<Potion*> potionInHand);
+	void addPotionHeal(Potion* potionInHand);
 
 	void attack(Ennemy* target);
 	void recieveDamage(int damage);
@@ -34,6 +34,6 @@ public:
 protected:
 	int exp;
 	int level;
-	std::vector<Potion> potionInHand;
+	std::vector<Potion*> potionInHand;
 };
 
