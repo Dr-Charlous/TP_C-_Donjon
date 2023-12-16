@@ -28,7 +28,7 @@ void Choice(Donjon donjon, Player* player, bool battle)
 		int isAnyPotionThere = 0;
 		for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getEnnemies().size(); i++)
 		{
-			if (!donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->getUsed())
+			if (!donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->getGet())
 			{
 				isAnyPotionThere++;
 			}
@@ -123,20 +123,21 @@ void Choice(Donjon donjon, Player* player, bool battle)
 		{
 			for (int i = 0; i < donjon.getRooms()[donjon.getActualPosition()].getPotion().size(); i++)
 			{
-				if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->getUsed() == false)
+				if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->getGet() == false)
 				{
 					if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->getForce() > 0) {
 						donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->giveForce(player);
+						donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->setUsed(true);
 					}
 					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->getLife() > 0) {
 						donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->giveLife(player);
+						donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->setUsed(true);
 					}
 					else if (donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->getHeal() > 0) {
 						player->addPotionHeal(donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]);
 					}
 
-					donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->setUsed(true);
-					std::cout << "You get a " << donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->getName() << std::endl;
+					donjon.getRooms()[donjon.getActualPosition()].getPotion()[i]->setGet(true);
 					break;
 				}
 			}

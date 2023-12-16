@@ -24,6 +24,9 @@ public:
 	bool getUsed();
 	void setUsed(bool used);
 
+	bool getGet();
+	void setGet(bool get);
+
 	void giveHeal(Player *player);
 	void giveLife(Player *player);
 	void giveForce(Player *player);
@@ -34,5 +37,6 @@ protected:
 	int life;
 	int force;
 	bool used;
+	bool get;
 };
 
