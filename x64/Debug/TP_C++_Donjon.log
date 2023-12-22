@@ -1,2 +1,7 @@
-﻿  Potion.cpp
+﻿  Battle.cpp
+  TP_C++_Donjon.cpp
+C:\Users\Charles\Documents\GitHub\TP_C-_Donjon\TP_C++_Donjon.cpp(67,22): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  Génération de code en cours...
+C:\Users\Charles\Documents\GitHub\TP_C-_Donjon\TP_C++_Donjon.cpp(62): warning C4715: 'ChangeRoom' : les chemins de contrôle ne retournent pas tous une valeur
+C:\Users\Charles\Documents\GitHub\TP_C-_Donjon\Battle.cpp(41): warning C4715: 'Battle::fight' : les chemins de contrôle ne retournent pas tous une valeur
   TP_C++_Donjon.vcxproj -> C:\Users\Charles\Documents\GitHub\TP_C-_Donjon\x64\Debug\TP_C++_Donjon.exe

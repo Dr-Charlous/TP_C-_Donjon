@@ -1,27 +1,19 @@
 #pragma once
-#include <vector>
 #include "Room.h"
 
 class Donjon
 {
 public:
-	Donjon(std::vector<Room> _rooms, int _actualPosition, int _donjonLength);
+	Donjon(Room* _actualRoom);
 
-	std::vector<Room> getRooms();
-	void setRoom(std::vector<Room>);
+	std::map<std::string, Room*> getRooms();
+	void setRooms(std::map<std::string, Room*>);
 
-	int getActualPosition();
-	void setActualPosition(int);
-
-	int getDonjonLength();
-	void setDonjonLength(int);
-
-	void PrintDonjon();
-
+	Room* getActualRoom();
+	void setActualRoom(Room*);
 
 protected:
-	std::vector<Room> rooms;
-	int actualPosition;
-	int donjonLength;
+	std::map<std::string, Room*> rooms;
+	Room* actualRoom;
 };
 

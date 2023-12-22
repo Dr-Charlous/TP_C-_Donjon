@@ -2,12 +2,25 @@
 #include <iostream>
 
 
-Room::Room(std::vector<Potion*> _potion, std::vector<Ennemy*> _ennemies, bool _isThereABed, bool _isThereAnExit) :
+Room::Room(std::string _name, std::vector<Potion*> _potion, std::vector<Ennemy*> _ennemies, bool _isThereABed, bool _isThereAnExit) :
+	name(_name),
 	potions(_potion),
 	ennemies(_ennemies),
 	isThereABed(_isThereABed),
-	isThereAnExit(_isThereAnExit)
+	isThereAnExit(_isThereAnExit),
+	rooms(rooms),
+	hidenOnes(hidenOnes)
 {
+}
+
+std::string Room::getName()
+{
+	return this->name;
+}
+
+void Room::setName(std::string name)
+{
+	this->name = name;
 }
 
 std::vector<Potion*> Room::getPotion()
@@ -20,6 +33,11 @@ void Room::setPotion(std::vector<Potion*> potions)
 	this->potions = potions;
 }
 
+void Room::addPotion(Potion* potion)
+{
+	this->potions.push_back(potion);
+}
+
 std::vector<Ennemy*> Room::getEnnemies()
 {
 	return this->ennemies;
@@ -28,6 +46,21 @@ std::vector<Ennemy*> Room::getEnnemies()
 void Room::setEnnemies(std::vector<Ennemy*> ennemies)
 {
 	this->ennemies = ennemies;
+}
+
+void Room::setRooms(std::map<std::string, Room*> rooms)
+{
+	this->rooms = rooms;
+}
+
+void Room::addRooms(Room* rooms)
+{
+	this->rooms[rooms->getName()] = rooms;
+}
+
+std::map<std::string, Room*> Room::getRooms()
+{
+	return this->rooms;
 }
 
 bool Room::getBed()
@@ -50,17 +83,12 @@ void Room::setExit(bool isThereAnExit)
 	this->isThereAnExit;
 }
 
-void Room::PrintRoom()
+std::vector<Potion*> Room::getHidenOnes()
 {
-	for (int i = 0; i < potions.size(); i++)
-	{
-		std::cout << "\n   Objects : " << potions[i]->getName() << std::endl;
-	}
-	for (int i = 0; i < ennemies.size(); i++)
-	{
-		std::cout << "\n   Ennemy : " << ennemies[i]->getName() << std::endl;
-	}
-
-	std::cout << "\n   Bed : " << isThereABed << " Exit : " << isThereAnExit << std::endl;
+	return this->hidenOnes;
 }
 
+void Room::setHidenOnes(std::vector<Potion*>)
+{
+	this->hidenOnes = hidenOnes;
+}

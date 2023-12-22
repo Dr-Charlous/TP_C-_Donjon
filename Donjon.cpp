@@ -1,51 +1,28 @@
 #include <iostream>
 #include "Donjon.h"
 
-Donjon::Donjon(std::vector<Room> _rooms, int _actualPosition, int _donjonLength) :
-	rooms(_rooms),
-	actualPosition(_actualPosition),
-	donjonLength(_donjonLength)
+Donjon::Donjon(Room* _actualRoom) :
+	rooms(rooms),
+	actualRoom(_actualRoom)
 {
 }
 
-std::vector<Room> Donjon::getRooms()
+std::map<std::string, Room*> Donjon::getRooms()
 {
 	return this->rooms;
 }
 
-void Donjon::setRoom(std::vector<Room> rooms)
+void Donjon::setRooms(std::map<std::string, Room*> rooms)
 {
 	this->rooms = rooms;
 }
 
-int Donjon::getActualPosition()
+Room* Donjon::getActualRoom()
 {
-	return this->actualPosition;
+	return this->actualRoom;
 }
 
-void Donjon::setActualPosition(int actualPosition)
+void Donjon::setActualRoom(Room* actualRoom)
 {
-	this->actualPosition = actualPosition;
-}
-
-int Donjon::getDonjonLength()
-{
-	return this->donjonLength;
-}
-
-void Donjon::setDonjonLength(int donjonLength)
-{
-	this->donjonLength = donjonLength;
-}
-
-void Donjon::PrintDonjon()
-{
-	std::cout << "Rooms : " << rooms.size() << ", Size : " << donjonLength << ", Player position : " << actualPosition << "\n" << std::endl;
-
-	for (size_t i = 0; i < rooms.size(); i++)
-	{
-		std::cout << "Room " << i << " : " << std::endl;
-		rooms[i].PrintRoom();
-		std::cout << "\n" << std::endl;
-	}
+	this->actualRoom = actualRoom;
 }

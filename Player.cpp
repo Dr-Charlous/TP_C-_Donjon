@@ -3,6 +3,7 @@
 #include <vector>
 #include "Potion.h"
 #include <ctime>
+#include <iostream>
 
 Player::Player(std::string _name, int _lifeMax, int _life, int _force,  int _exp, int _level) :
 	Character(_name, _lifeMax, _life, _force),
@@ -73,10 +74,15 @@ bool Player::isAlive()
 	return life > 0;
 }
 
-void Player::LevelUp(int* exp, int* level)
+void Player::LevelUp()
 {
-	if (*exp >= *level * 100) {
-		*exp -= *level * 100;
-		*level += 1;
-	}
+	if (this->getExp() >= level * 100) {
+		this->setExp(this->getExp() - (this->getLevel() * 100));
+		this->setLevel(this->getLevel() + 1);
+
+		this->setLifeMax(this->getLifeMax() + this->getLevel());
+		this->setLife(this->getLife() + this->getLevel());
+		this->setForce(this->getForce() + this->getLevel());
+		std::cout << "You win 1 level ! " << this->getLevel() << " points in lifeMax and " << this->getLevel() << " points in force !" << std::endl;
+	} 
 }

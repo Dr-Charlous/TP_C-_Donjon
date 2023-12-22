@@ -29,7 +29,7 @@ protected :
 	int lifeMax;
 	int life;
 	int force;
-	//var inventory;
+
 	Weapon weapon;
 	Armor armor;
 };

@@ -55,10 +55,42 @@ bool Battle::ennemyAttack(Player* player, Ennemy* ennemy) {
 
     if (!ennemy->isAlive()) {
         std::cout << player->getName() << " wins!" << std::endl;
+        std::cout << player->getName() << " gain " << player->getExp() << " exp !" << std::endl;
+
+        player->setExp(player->getExp() + ennemy->getExp());
+        player->LevelUp();
+
+        if (ennemy->getWeapon().getDamage() != 0) {
+            std::cout << "Your ennemi drop : " << ennemy->getWeapon().getName() << "(" << ennemy->getWeapon().getDamage() << ") and your's is " << player->getWeapon().getName() << "(" << player->getWeapon().getDamage() << ")" << "\nDo you want to equip it or abandon it ?\n1 : equip it\n2 : abandon it" << std::endl;
+            int choice = 0;
+            std::cin >> choice;
+            if (choice == 1) {
+                std::cout << "You choose to esuip it" << std::endl;
+                player->setWeapon(ennemy->getWeapon());
+            }
+            else {
+                std::cout << "You choose to abandon it\n" << std::endl;
+            }
+        }
+
+        if (ennemy->getArmor().getDefence() != 0) {
+            std::cout << "Your ennemi drop : " << ennemy->getArmor().getName() << "(" << ennemy->getArmor().getDefence() << ") and your's is " << player->getArmor().getName() << "(" << player->getArmor().getDefence() << ")" << "\nDo you want to equip it or abandon it ?\n1 : equip it\n2 : abandon it" << std::endl;
+            int choice = 0;
+            std::cin >> choice;
+            if (choice == 1) {
+                std::cout << "You choose to esuip it" << std::endl;
+                player->setArmor(ennemy->getArmor());
+            }
+            else {
+                std::cout << "You choose to abandon it\n" << std::endl;
+            }
+        }
+
         return false;
     }
     else if (!player->isAlive()) {
         std::cout << ennemy->getName() << " wins!" << std::endl;
+        std::cout << "\nYou lose... try again !" << std::endl;
         return false;
     }
     else {

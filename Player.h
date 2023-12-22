@@ -20,7 +20,7 @@ public:
 	int getLevel();
 	void setLevel(int level);
 
-	void LevelUp(int *exp,int *level);
+	void LevelUp();
 	void Sleep(int sleepingHeal);
 
 	std::vector<Potion*> getPotionHeal();
